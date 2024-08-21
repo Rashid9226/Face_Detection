@@ -4,6 +4,8 @@ import cv2
 import logging as log
 import datetime as dt
 from time import sleep
+import os
+import sys
 
 # To learn about haar cascade : https://docs.opencv.org/master/db/d28/tutorial_cascade_classifier.html
 cascPath = "haarcascade_frontalface_default.xml"
@@ -75,7 +77,7 @@ components.html('<html><body>Note: The haar cascade files can be downloaded from
             'OpenCV Github repository</a></body></html>')
 
 st.write("For Example, if you go to the github page of haarcascade you will see that there is a particular"
-         " xml file containing the feature set to detect the full body, lower-body, eye, frontal-face and "
+         " xml file containing the feature set to detect the fulsteal body, lower-body, eye, frontal-face and "
          "so on.")
 
 st.subheader("Starting with our Face Detection app building")
