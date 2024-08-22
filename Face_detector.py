@@ -179,4 +179,4 @@ if st.button("Can I detect your face ?"):
 
 # When everything is done, release the capture
 video_capture.release()
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()
