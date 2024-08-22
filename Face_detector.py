@@ -142,15 +142,11 @@ st.info("if cv2.waitKey(1) & 0xFF == ord('q'): break")
 
 st.header("Les gooo")
 if st.button("Can I detect your face ?"):
-    while True:
-        if not video_capture.isOpened():
-            print('Unable to load camera.')
-            sleep(5)
-            pass
+    ret, frame = video_capture.read()
 
-        # Capture frame-by-frame
-        ret, frame = video_capture.read()
-
+    if not ret:
+        st.error("Failed to capture image.")
+    else:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         faces = faceCascade.detectMultiScale(
@@ -160,23 +156,15 @@ if st.button("Can I detect your face ?"):
             minSize=(30, 30)
         )
 
-        # Draw a rectangle around the faces
+        # Draw rectangles around faces
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        # if anterior != len(faces):
-        #     anterior = len(faces)
-        #     log.info("faces: " + str(len(faces)) + " at " + str(dt.datetime.now()))
+        # Convert the frame to RGB (for Streamlit)
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        # Display the resulting frame
-        cv2.imshow('Video', frame)
+        # Display the image
+        st.image(frame_rgb, caption="Detected Faces", use_column_width=True)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-        # Display the resulting frame
-        cv2.imshow('Video', frame)
-
-# When everything is done, release the capture
+# Release the video capture object
 video_capture.release()
-# cv2.destroyAllWindows()
