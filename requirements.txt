@@ -18,6 +18,7 @@ mdurl
 narwhals
 numpy
 opencv-python
+opencv-python-headless
 packaging
 pandas
 pillow
